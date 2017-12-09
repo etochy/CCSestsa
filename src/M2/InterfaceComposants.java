@@ -4,16 +4,16 @@ import java.util.List;
 
 public class InterfaceComposants {
 	private Composant context;
-	private String type;
+	private Type type;
 	
-	private List<ServiceR> listServR;
-	private List<ServiceS> listServS;
+	private List<Service> listServR;
+	private List<Service> listServS;
 	
-	private List<PortRequired>listPortR;
-	private List<PortSupplied>listPortS;
+	private List<Port>listPortR;
+	private List<Port>listPortS;
 	
-	public InterfaceComposants(Composant context, String type, List<ServiceR> listServR, List<ServiceS> listServS,
-			List<PortRequired> listPortR, List<PortSupplied> listPortS) {
+	public InterfaceComposants(Composant context, Type type, List<Service> listServR, List<Service> listServS,
+			List<Port> listPortR, List<Port> listPortS) {
 		super();
 		this.context = context;
 		this.type = type;
@@ -29,34 +29,42 @@ public class InterfaceComposants {
 	public void setContext(Composant context) {
 		this.context = context;
 	}
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
-	public List<ServiceR> getListServR() {
+
+	public List<Service> getListServR() {
 		return listServR;
 	}
-	public void setListServR(List<ServiceR> listServR) {
+
+	public void setListServR(List<Service> listServR) {
 		this.listServR = listServR;
 	}
-	public List<ServiceS> getListServS() {
+
+	public List<Service> getListServS() {
 		return listServS;
 	}
-	public void setListServS(List<ServiceS> listServS) {
+
+	public void setListServS(List<Service> listServS) {
 		this.listServS = listServS;
 	}
-	public List<PortRequired> getListPortR() {
+
+	public List<Port> getListPortR() {
 		return listPortR;
 	}
-	public void setListPortR(List<PortRequired> listPortR) {
+
+	public void setListPortR(List<Port> listPortR) {
 		this.listPortR = listPortR;
 	}
-	public List<PortSupplied> getListPortS() {
+
+	public List<Port> getListPortS() {
 		return listPortS;
 	}
-	public void setListPortS(List<PortSupplied> listPortS) {
+
+	public void setListPortS(List<Port> listPortS) {
 		this.listPortS = listPortS;
 	}
 	

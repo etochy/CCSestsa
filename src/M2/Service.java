@@ -1,11 +1,13 @@
 package M2;
 
-public abstract class Service {
+public class Service {
 	private InterfaceComposants context;
-
-	public Service(InterfaceComposants context) {
+	private String type;
+	
+	public Service(InterfaceComposants context, String t) {
 		super();
 		this.context = context;
+		this.type = t;
 	}
 
 	public InterfaceComposants getContext() {
@@ -14,6 +16,14 @@ public abstract class Service {
 
 	public void setContext(InterfaceComposants context) {
 		this.context = context;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	
