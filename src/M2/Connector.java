@@ -10,7 +10,6 @@ public class Connector implements GConnector {
 		this.glue_2 = g2;
 	}
 	
-	@Override
 	public void printConnectorDescription() {
 		System.out.println(description);
 	}
