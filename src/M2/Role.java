@@ -4,9 +4,9 @@ public class Role {
 	
 	private InterfaceConnector context;
 	private String roleDescription;
-	private String type;
+	private Type type;
 	
-	public Role (String description, String type, InterfaceConnector parent) {
+	public Role (String description, Type type, InterfaceConnector parent) {
 		this.roleDescription = description;
 		this.context = parent;
 		this.type = type;
@@ -20,7 +20,7 @@ public class Role {
 		return this.context;
 	}
 	
-	public String getType () {
+	public Type getType () {
 		System.out.println("Role is " + type);
 		return this.type;
 	}

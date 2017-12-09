@@ -5,17 +5,15 @@ import java.util.List;
 public class InterfaceConnector {
 	private Glue context;
 	private List<Role> role;
-	private String type;
+	private Type type;
 	
-	// Type : Supplied / Required
-	// TODO : Change for a TYPE with two constants
-	public InterfaceConnector (List<Role> r, String type, Glue parent) {
+	public InterfaceConnector (List<Role> r, Type type, Glue parent) {
 		this.role = r;
 		this.type = type;
 		this.context = parent;
 	}
 	
-	public String getInterfaceType () {
+	public Type getInterfaceType () {
 		return type;
 	}
 	
@@ -25,10 +23,5 @@ public class InterfaceConnector {
 	
 	public Glue getContext () {
 		return this.context;
-	}
-	
-	public String getType () {
-		System.out.println("Interface is " + type);
-		return this.type;
 	}
 }
