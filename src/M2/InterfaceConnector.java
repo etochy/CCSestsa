@@ -2,7 +2,7 @@ package M2;
 
 import java.util.List;
 
-public abstract class InterfaceConnector {
+public class InterfaceConnector {
 	private Glue context;
 	private List<Role> role;
 	private String type;
@@ -25,5 +25,10 @@ public abstract class InterfaceConnector {
 	
 	public Glue getContext () {
 		return this.context;
+	}
+	
+	public String getType () {
+		System.out.println("Interface is " + type);
+		return this.type;
 	}
 }

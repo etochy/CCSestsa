@@ -1,6 +1,7 @@
 package M2;
 
 public class Glue {
+	
 	private Connector context;
 	private InterfaceConnector interfaceRequired;
 	private InterfaceConnector interfaceSupplied;
