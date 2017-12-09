@@ -24,4 +24,18 @@ public class InterfaceConnector {
 	public Glue getContext () {
 		return this.context;
 	}
+	
+	public List<Role> getRoles () {
+		return role;
+	}
+	
+	public void receive (String message) {
+		context.receive(message);
+	}
+	
+	public void send (String message, Configuration cfg) {
+		for (Role r : this.getRoles()) {
+			r.send(message, cfg);
+		}
+	}
 }
