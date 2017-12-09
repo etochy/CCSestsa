@@ -23,6 +23,23 @@ public class InterfaceComposants {
 		this.listPortS = listPortS;
 	}
 	
+	public void send(String msg, Port name) {
+		if(type == Type.REQUIRED) {
+			System.out.println("Impossible dans ce sens");
+		}else {
+			System.out.println("send port : " + msg);
+			this.context.send(msg, name);
+		}		
+	}
+	public void receive(String msg, Port name) {
+		if(type == Type.REQUIRED) {
+			System.out.println("receive port : " + msg);
+			this.context.receive(msg, name);
+		}else {
+			System.out.println("Impossible dans ce sens");
+		}	
+	}
+	
 	public Composant getContext() {
 		return context;
 	}

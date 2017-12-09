@@ -2,9 +2,8 @@ package M2;
 
 import java.util.List;
 
-import javax.security.auth.login.Configuration;
-
 public class Composant implements GComposant{
+	
 	private Configuration context;
 	
 	private List<Configuration> listConfig;
@@ -27,6 +26,13 @@ public class Composant implements GComposant{
 		this.listConfig = listC;
 		this.listProperties = listP;
 		this.listConfig = listC;
+	}
+	
+	public void send(String msg, Port name) {
+		this.context.send(msg, name);	
+	}
+	public void receive(String msg, Port name) {
+		// Do something, utilisation du domaine metier
 	}
 	
 	public void addConfig(Configuration c) {

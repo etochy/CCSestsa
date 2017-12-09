@@ -1,30 +1,82 @@
 package M2;
 
 public class Port {
-	private InterfaceComposants context;
-	String type;
+	private InterfaceComposants contextComp = null;
+	private InterfaceConfiguration contextConf = null;
+	private Type type;
+	private String name;
 
-	public Port(InterfaceComposants context, String t) {
+	public Port(InterfaceComposants context, Type t, String n) {
 		super();
-		this.context = context;
+		this.contextComp = context;
 		this.type = t;
+		this.name = n;
 	}
 
-	public InterfaceComposants getContext() {
-		return context;
+	public Port(InterfaceConfiguration context, Type t, String n) {
+		super();
+		this.contextConf = context;
+		this.type = t;
+		this.name = n;
 	}
 
-	public void setContext(InterfaceComposants context) {
-		this.context = context;
+	public void send(String msg) {
+		if(type == Type.REQUIRED) {
+			System.out.println("Impossible dans ce sens");
+		}else {
+			System.out.println("send port : " + msg);
+			if(contextComp == null)
+				this.contextConf.send(msg, this);
+			else
+				this.contextComp.send(msg, this);
+		}		
+	}
+	public void receive(String msg) {
+		if(type == Type.REQUIRED) {
+			System.out.println("receive port : " + msg);
+			if(contextComp == null)
+				this.contextConf.receive(msg, this);
+			else
+				this.contextComp.receive(msg, this);
+
+		}else {
+			System.out.println("Impossible dans ce sens");
+		}	
 	}
 
-	public String getType() {
+	// getters setters
+
+
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public InterfaceComposants getContextComp() {
+		return contextComp;
+	}
+
+	public void setContextComp(InterfaceComposants contextComp) {
+		this.contextComp = contextComp;
+	}
+
+	public InterfaceConfiguration getContextConf() {
+		return contextConf;
+	}
+
+	public void setContextConf(InterfaceConfiguration contextConf) {
+		this.contextConf = contextConf;
+	}
+
+	public void setType(Type type) {
 		this.type = type;
 	}
-	
-	
+
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String n) {
+		this.name = n;
+	}
+
+
 }
