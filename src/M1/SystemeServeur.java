@@ -139,11 +139,71 @@ public class SystemeServeur extends Configuration{
 		connSecu2.setGlue(grconnSecu2);
 		this.add(new Attachment(this, Type.REQUIRED, pRSecuConnexion, rconnSecu2S)); //port requis vers role fourni
 		this.add(new Attachment(this, Type.SUPPLIED, pSConnexionSecu, rconnSecu2R)); //port fourni vers role requis
-		add(connSecu1);
+		add(connSecu2);
 		
 		// ATTACHMENTS CONNEXION-BDD
+		// connBdd1
+		Connector connBdd1 = new Connector();
+		Glue grconnBdd1 = new Glue(connBdd1);
+		InterfaceConnector interRconnBdd1 = new InterfaceConnector(Type.REQUIRED, grconnBdd1);
+		InterfaceConnector interSconnBdd1 = new InterfaceConnector(Type.SUPPLIED, grconnBdd1);
+		Role rconnBdd1R = new Role("Role connBdd 1 Requis", Type.REQUIRED, interRconnBdd1, "rconnBdd1R");
+		Role rconnBdd1S = new Role("Role connBdd 1 Fourni", Type.SUPPLIED, interSconnBdd1, "rconnBdd1S");
+		interRconnBdd1.addRole(rconnBdd1R);
+		interSconnBdd1.addRole(rconnBdd1S);
+		grconnBdd1.setInterfaceRequired(interRconnBdd1);
+		grconnBdd1.setInterfaceSupplied(interSconnBdd1);
+		connBdd1.setGlue(grconnBdd1);
+		this.add(new Attachment(this, Type.REQUIRED, pRConnexionBDD, rconnBdd1S)); //port requis vers role fourni
+		this.add(new Attachment(this, Type.SUPPLIED, pSBddConnexion, rconnBdd1R)); //port fourni vers role requis
+		add(connBdd1);
+		// connBdd2
+		Connector connBdd2 = new Connector();
+		Glue grconnBdd2 = new Glue(connBdd2);
+		InterfaceConnector interRconnBdd2 = new InterfaceConnector(Type.REQUIRED, grconnBdd2);
+		InterfaceConnector interSconnBdd2 = new InterfaceConnector(Type.SUPPLIED, grconnBdd2);
+		Role rconnBdd2R = new Role("Role connBdd 1 Requis", Type.REQUIRED, interRconnBdd2, "rconnBdd2R");
+		Role rconnBdd2S = new Role("Role connBdd 1 Fourni", Type.SUPPLIED, interSconnBdd2, "rconnBdd2S");
+		interRconnBdd2.addRole(rconnBdd2R);
+		interSconnBdd2.addRole(rconnBdd2S);
+		grconnBdd2.setInterfaceRequired(interRconnBdd2);
+		grconnBdd2.setInterfaceSupplied(interSconnBdd2);
+		connBdd2.setGlue(grconnBdd2);
+		this.add(new Attachment(this, Type.REQUIRED, pRBddConnexion, rconnBdd2S)); //port requis vers role fourni
+		this.add(new Attachment(this, Type.SUPPLIED, pSConnexionBDD, rconnBdd2R)); //port fourni vers role requis
+		add(connBdd2);
 		
 		// ATTACHMENTS BDD-SECU
+		// secuBdd1
+		Connector secuBdd1 = new Connector();
+		Glue grsecuBdd1 = new Glue(connSecu1);
+		InterfaceConnector interRsecuBdd1 = new InterfaceConnector(Type.REQUIRED, grsecuBdd1);
+		InterfaceConnector interSsecuBdd1 = new InterfaceConnector(Type.SUPPLIED, grsecuBdd1);
+		Role rsecuBdd1R = new Role("Role connBdd 1 Requis", Type.REQUIRED, interRsecuBdd1, "rsecuBdd1R");
+		Role rsecuBdd1S = new Role("Role connBdd 1 Fourni", Type.SUPPLIED, interSsecuBdd1, "rsecuBdd1S");
+		interRsecuBdd1.addRole(rsecuBdd1R);
+		interSsecuBdd1.addRole(rsecuBdd1S);
+		grsecuBdd1.setInterfaceRequired(interRsecuBdd1);
+		grsecuBdd1.setInterfaceSupplied(interSsecuBdd1);
+		secuBdd1.setGlue(grsecuBdd1);
+		this.add(new Attachment(this, Type.REQUIRED, pRSecuBDD, rsecuBdd1S)); //port requis vers role fourni
+		this.add(new Attachment(this, Type.SUPPLIED, pSBddSecu, rsecuBdd1R)); //port fourni vers role requis
+		add(secuBdd1);
+		// secuBdd2
+		Connector secuBdd2 = new Connector();
+		Glue grsecuBdd2 = new Glue(secuBdd2);
+		InterfaceConnector interRsecuBdd2 = new InterfaceConnector(Type.REQUIRED, grsecuBdd2);
+		InterfaceConnector interSsecuBdd2 = new InterfaceConnector(Type.SUPPLIED, grsecuBdd2);
+		Role rsecuBdd2R = new Role("Role secuBdd 1 Requis", Type.REQUIRED, interRsecuBdd2, "rsecuBdd2R");
+		Role rsecuBdd2S = new Role("Role secuBdd 1 Fourni", Type.SUPPLIED, interSsecuBdd2, "rsecuBdd2S");
+		interRsecuBdd2.addRole(rsecuBdd2R);
+		interSsecuBdd2.addRole(rsecuBdd2S);
+		grsecuBdd2.setInterfaceRequired(interRsecuBdd2);
+		grsecuBdd2.setInterfaceSupplied(interSsecuBdd2);
+		secuBdd2.setGlue(grsecuBdd2);
+		this.add(new Attachment(this, Type.REQUIRED, pRBddSecu, rsecuBdd2S)); //port requis vers role fourni
+		this.add(new Attachment(this, Type.SUPPLIED, pSSecuBDD, rsecuBdd2R)); //port fourni vers role requis
+		add(secuBdd2);
 		
 	}
 	public SystemeServeur(List<GComposant> listComposants, List<GConnector> listConnectors,
