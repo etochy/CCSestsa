@@ -34,8 +34,4 @@ public class Role {
 	public void receive (String message) {
 		context.receive(message);
 	}
-	
-	public void send (String message, Configuration cfg) {
-		cfg.send(message, this);
-	}
 }

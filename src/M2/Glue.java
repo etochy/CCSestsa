@@ -25,7 +25,9 @@ public class Glue {
 	}
 	
 	public void send (String message) {
-		interfaceSupplied.send(message, context.getContext());
+		for (Role r : interfaceSupplied.getRoles()) {
+			this.context.send(message, r);
+		}
 	}
 	
 	public void receive (String message) {

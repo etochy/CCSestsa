@@ -16,6 +16,10 @@ public class Connector implements GConnector {
 		this.glue = g;
 	}
 	
+	public void send (String message, Role role) {
+		context.send(message, role);
+	}
+	
 	public String getDescription () {
 		System.out.println(description);
 		return description;
