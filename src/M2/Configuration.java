@@ -1,8 +1,9 @@
 package M2;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Configuration implements GComposant, GConnector{
+public abstract class Configuration implements GComposant, GConnector{
 
 	private List<GComposant> listComposants;
 	private List<GConnector> listConnectors;
@@ -10,6 +11,15 @@ public class Configuration implements GComposant, GConnector{
 	private List<InterfaceConfiguration> listInterface;
 	private List<Binding> listBindings;
 	private List<Attachment> listAttachments;
+	
+	public Configuration() {
+		//Permet construction des listes
+		listComposants = new ArrayList<GComposant>();
+		listConnectors = new ArrayList<GConnector>();
+		listInterface = new ArrayList<InterfaceConfiguration>();
+		listBindings = new ArrayList<Binding>();
+		listAttachments = new ArrayList<Attachment>();
+	}
 	
 	public Configuration(List<GComposant> listComposants, List<GConnector> listConnectors,
 			List<InterfaceConfiguration> listInterface, List<Binding> listBindings, List<Attachment> listAttachments) {
@@ -28,7 +38,7 @@ public class Configuration implements GComposant, GConnector{
 			for(Binding b : listBindings) {
 				if(b.getPort1().getName().equals("name")) {
 					for(Attachment a : listAttachments) {
-						if (a.getPort().equals(b.getPort2().getName())) {
+						if (a.getPort().getName().equals(b.getPort2().getName())) {
 							a.getRole().receive(msg);
 						}
 					}
@@ -75,6 +85,52 @@ public class Configuration implements GComposant, GConnector{
 	}
 	
 	
+	
+	/**
+	 * @param arg0
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(GComposant arg0) {
+		return listComposants.add(arg0);
+	}
+
+	/**
+	 * @param arg0
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(GConnector arg0) {
+		return listConnectors.add(arg0);
+	}
+
+	/**
+	 * @param arg0
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(InterfaceConfiguration arg0) {
+		return listInterface.add(arg0);
+	}
+
+	/**
+	 * @param arg0
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(Binding arg0) {
+		return listBindings.add(arg0);
+	}
+
+	/**
+	 * @param arg0
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(Attachment arg0) {
+		return listAttachments.add(arg0);
+	}
+
 	public List<GComposant> getListComposants() {
 		return listComposants;
 	}

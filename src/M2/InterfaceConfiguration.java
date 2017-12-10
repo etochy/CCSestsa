@@ -1,5 +1,6 @@
 package M2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InterfaceConfiguration {
@@ -9,13 +10,12 @@ public class InterfaceConfiguration {
 	private List<Port> listPortR;
 	private List<Port> listPortS;
 	
-	public InterfaceConfiguration(Configuration context, Type type, List<Port> listPortR,
-			List<Port> listPortS) {
+	public InterfaceConfiguration(Configuration context, Type type) {
 		super();
 		this.context = context;
 		this.type = type;
-		this.listPortR = listPortR;
-		this.listPortS = listPortS;
+		this.listPortR = new ArrayList<Port>();
+		this.listPortS = new ArrayList<Port>();
 	}
 
 	public void send(String msg, Port name) {
@@ -33,6 +33,13 @@ public class InterfaceConfiguration {
 		}else {
 			System.out.println("Impossible dans ce sens");
 		}	
+	}
+	
+	public boolean addR(Port e) {
+		return listPortR.add(e);
+	}
+	public boolean addS(Port e) {
+		return listPortS.add(e);
 	}
 	
 	public Configuration getContext() {

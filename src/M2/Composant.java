@@ -1,5 +1,6 @@
 package M2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Composant implements GComposant{
@@ -13,10 +14,11 @@ public class Composant implements GComposant{
 	private InterfaceComposants interR;
 	private InterfaceComposants interS;
 	
-	public Composant(Configuration c, InterfaceComposants iS, InterfaceComposants iR) {
+	public Composant(Configuration c) {
 		this.context = c;
-		this.interS = iS;
-		this.interR = iR;
+		this.listConfig = new ArrayList<Configuration>();
+		this.listConstraints = new ArrayList<Constraints>();
+		this.listProperties = new ArrayList<Properties>();
 	}
 
 	public Composant(Configuration c, InterfaceComposants iS, InterfaceComposants iR, List<Configuration> listC, List<Properties> listP, List<Constraints> listCo) {
@@ -29,22 +31,47 @@ public class Composant implements GComposant{
 	}
 	
 	public void send(String msg, Port name) {
-		this.context.send(msg, name);	
+		this.context.send(msg, name);
+		if(listConfig.size()>0)
+			for(Configuration c : listConfig)
+				c.send(msg, name);
 	}
 	public void receive(String msg, Port name) {
 		// Do something, utilisation du domaine metier
+		if(listConfig.size()>0)
+			for(Configuration c : listConfig)
+				c.receive(msg, name);
 	}
 	
-	public void addConfig(Configuration c) {
-		listConfig.add(c);
-	}
-	public void addPropertie(Properties c) {
-		listProperties.add(c);
-	}
-	public void addConstraint(Constraints c) {
-		listConstraints.add(c);
-	}
 	
+	
+	/**
+	 * @param e
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(Configuration e) {
+		return listConfig.add(e);
+	}
+
+	/**
+	 * @param e
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(Properties e) {
+		return listProperties.add(e);
+	}
+
+	/**
+	 * @param e
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(Constraints e) {
+		return listConstraints.add(e);
+	}
+
 	public Configuration getContext() {
 		return context;
 	}
@@ -75,6 +102,34 @@ public class Composant implements GComposant{
 
 	public void setListConstraints(List<Constraints> listConstraints) {
 		this.listConstraints = listConstraints;
+	}
+
+	/**
+	 * @return the interR
+	 */
+	public InterfaceComposants getInterR() {
+		return interR;
+	}
+
+	/**
+	 * @param interR the interR to set
+	 */
+	public void setInterR(InterfaceComposants interR) {
+		this.interR = interR;
+	}
+
+	/**
+	 * @return the interS
+	 */
+	public InterfaceComposants getInterS() {
+		return interS;
+	}
+
+	/**
+	 * @param interS the interS to set
+	 */
+	public void setInterS(InterfaceComposants interS) {
+		this.interS = interS;
 	}
 
 

@@ -1,11 +1,18 @@
 package M2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InterfaceConnector {
 	private Glue context;
 	private List<Role> role;
 	private Type type;
+	
+	public InterfaceConnector (Type type, Glue parent) {
+		this.role = new ArrayList<Role>();
+		this.type = type;
+		this.context = parent;
+	}
 	
 	public InterfaceConnector (List<Role> r, Type type, Glue parent) {
 		this.role = r;
