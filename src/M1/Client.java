@@ -11,10 +11,18 @@ public class Client extends Composant{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void envoiServeur(String msg) {
+	public void ecrireServeur(String msg) {
 		for(Port p : this.getInterS().getListPortS()) {
 			if(p.getName().equals("pSClient")) {
 				p.send(msg);
+			}
+		}
+	}
+	
+	public void recupererBdd() {
+		for(Port p : this.getInterS().getListPortS()) {
+			if(p.getName().equals("pSClient")) {
+				p.send("Client");
 			}
 		}
 	}
