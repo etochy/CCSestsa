@@ -14,7 +14,7 @@ public class Client extends Composant{
 	public void ecrireServeur(String msg) {
 		for(Port p : this.getInterS().getListPortS()) {
 			if(p.getName().equals("pSClient")) {
-				p.send(msg);
+				p.send("Client,"+msg);
 			}
 		}
 	}
@@ -22,13 +22,13 @@ public class Client extends Composant{
 	public void recupererBdd() {
 		for(Port p : this.getInterS().getListPortS()) {
 			if(p.getName().equals("pSClient")) {
-				p.send("Client");
+				p.send("Client,lecture");
 			}
 		}
 	}
 
 	public void receive(String msg, Port p) {
-		System.out.println("msg from server : " + msg);
+		System.out.println("Client : msg from server : " + msg);
 	}
 
 }

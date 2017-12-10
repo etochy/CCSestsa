@@ -76,9 +76,7 @@ public class SystemeServeur extends Configuration{
 		// BINDING AVEC CONNEXION_MANAGER
 		this.add(new Binding(this, Type.REQUIRED, pRConnexion, pRSys));
 		this.add(new Binding(this, Type.SUPPLIED, pSConnexion, pSSys));
-//		for(Binding b : this.getListBindings())
-//			System.out.println("============= Bind " + b.getPort1().getName() + " - " + b.getPort2().getName());
-
+		
 		// CREATION SECURITY_MANAGER
 		SecurityManager securityManager = new SecurityManager(this);
 

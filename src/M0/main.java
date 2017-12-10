@@ -8,6 +8,7 @@ public class main {
 		System.out.println("Creation system");
 		SystemeC_S sys = new SystemeC_S();
 		sys.getClient().ecrireServeur("test");
+		sys.getClient().ecrireServeur("lecture");
 	}
 
 }
