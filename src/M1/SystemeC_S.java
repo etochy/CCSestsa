@@ -23,17 +23,11 @@ public class SystemeC_S extends Configuration{
 		InterfaceConfiguration interS = new InterfaceConfiguration(this, Type.SUPPLIED);
 		
 		//ports vers client
-		Port pRSysC = new Port(interR, Type.REQUIRED, "pRSysC");
-		Port pSSysC = new Port(interS, Type.SUPPLIED, "pSSysC");
+		Port pRSys = new Port(interR, Type.REQUIRED, "pRSys");
+		Port pSSys = new Port(interS, Type.SUPPLIED, "pSSys");
 		
-		interR.addR(pRSysC);
-		interS.addS(pSSysC);
-		//ports vers serveur
-		Port pRSysS = new Port(interR, Type.REQUIRED, "pRSysS");
-		Port pSSysS = new Port(interS, Type.SUPPLIED, "pSSysS");
-		
-		interR.addR(pRSysS);
-		interS.addS(pSSysS);
+		interR.addR(pRSys);
+		interS.addS(pSSys);
 		
 		// CREATION CLIENT
 		Client client = new Client(this);
@@ -52,8 +46,8 @@ public class SystemeC_S extends Configuration{
 
 		add(client);
 		// BINDING AVEC CLIENT
-		this.add(new Binding(this, Type.REQUIRED, pRClient, pRSysC));
-		this.add(new Binding(this, Type.SUPPLIED, pSClient, pSSysC));
+		this.add(new Binding(this, Type.REQUIRED, pRClient, pRSys));
+		this.add(new Binding(this, Type.SUPPLIED, pSClient, pSSys));
 		
 		// Création serveur
 		Serveur serveur = new Serveur(this);
@@ -65,7 +59,7 @@ public class SystemeC_S extends Configuration{
 		iSServeur.addS(pSServeur);
 		serveur.setInterR(iRServeur);
 		serveur.setInterS(iSServeur);
-		
+		add(serveur);
 		// ATTACHMENTS AVEC SERVEUR
 		// rpc1
 		RPC rpc1 = new RPC();
@@ -79,7 +73,7 @@ public class SystemeC_S extends Configuration{
 		gr1.setInterfaceRequired(interRrpc1);
 		gr1.setInterfaceSupplied(interSrpc1);
 		rpc1.setGlue(gr1);
-		this.add(new Attachment(this, Type.REQUIRED, pRSysS, rRpc1S)); //port requis vers role fourni
+		this.add(new Attachment(this, Type.REQUIRED, pRSys, rRpc1S)); //port requis vers role fourni
 		this.add(new Attachment(this, Type.SUPPLIED, pSServeur, rRpc1R)); //port fourni vers role requis
 		add(rpc1);
 		// rpc2
@@ -95,7 +89,7 @@ public class SystemeC_S extends Configuration{
 		gr2.setInterfaceSupplied(interSrpc2);
 		rpc2.setGlue(gr2);
 		this.add(new Attachment(this, Type.REQUIRED, pRServeur, rRpc2S)); //port requis vers role fourni
-		this.add(new Attachment(this, Type.SUPPLIED, pSSysS, rRpc2R)); //port fourni vers role requis
+		this.add(new Attachment(this, Type.SUPPLIED, pSSys, rRpc2R)); //port fourni vers role requis
 		add(rpc1);
 	}
 	
