@@ -31,16 +31,17 @@ public class Composant implements GComposant{
 	}
 	
 	public void send(String msg, Port name) {
-		System.out.println("send Composant " + name.getName() + " : "+msg);
+		// Notifie le contexte
 		this.context.send(msg, name);
+		// Si contient des Configurations (exemple Serveur / ConfServ) les notifie
 		if(listConfig.size()>0)
 			for(Configuration c : listConfig) {
 				c.send(msg, name);
 			}
 	}
 	public void receive(String msg, Port name) {
-		// Do something, utilisation du domaine metier
-		System.out.println("receive " + this.toString());
+		// Do something, utilisation du domaine metier exemple : afficher
+		// Si contient des Configurations (exemple Serveur / ConfServ) les notifie
 		if(listConfig.size()>0) {
 			for(Configuration c : listConfig) {
 				c.receive(msg, name);

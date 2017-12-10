@@ -8,10 +8,10 @@ public class Serveur extends Composant{
 	SystemeServeur systemS;
 	public Serveur(Configuration c) {
 		super(c);
-		systemS = new SystemeServeur(this);
+		systemS = new SystemeServeur(this); //initialise la config
 		add(systemS);
 	}
 	public void creerServ() {
-		systemS.creerSystemServ();
+		systemS.creerSystemServ(); // construit l'interieur de la config
 	}
 }

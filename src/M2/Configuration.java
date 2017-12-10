@@ -11,9 +11,11 @@ public abstract class Configuration implements GComposant, GConnector{
 	private List<InterfaceConfiguration> listInterface;
 	private List<Binding> listBindings;
 	private List<Attachment> listAttachments;
-
+	
+	// si est contenu par un composant
 	private Composant context = null;
 
+	// Port recu precedent, permet d'eviter les boucles infinies dans certains cas
 	private Port recuPrec;
 
 	public Configuration() {
@@ -39,22 +41,22 @@ public abstract class Configuration implements GComposant, GConnector{
 		String name = p.getName();
 		if (listBindings.size() > 0) {
 			// Parcours bindings puis attachements
-			for(Binding b : listBindings) {
-				if(b.getPort1().getName().equals(name)) {
-					for(Attachment a : listAttachments) {
-						if (a.getPort().getName().equals(b.getPort2().getName())) {
-							a.getRole().receive(msg);
+			for(Binding b : listBindings) { //liste les bindings
+				if(b.getPort1().getName().equals(name)) { //trouve le binding correspondant
+					for(Attachment a : listAttachments) { // liste les attachements
+						if (a.getPort().getName().equals(b.getPort2().getName())) { //trouve l'attachement correspondant au binding
+							System.out.println(this.getClass().toString() + " send " + msg + " from " + p.getName() + " to "+a.getRole().getName());
+							a.getRole().receive(msg); //envoi le message au role
 						}
 					}
 					if(getContext() != null) {
-						// Permet le passage d'un message grace aux bindings (exemple, entre ConnexionManager et Stysteme clientServer)
-						for(Binding b2 : listBindings) {
-							if(b.getPort2().getName().equals(b2.getPort2().getName()) && !b2.getPort1().getName().equals(name)) {
-								System.out.println("binding 2 : "+b2.getPort1().getName() + " - "+b2.getPort2().getName() + " - "+ name);
-								for(Attachment a : getContext().getContext().getListAttachments()) {
+						// Permet le passage d'un message dans une suite de bindings (exemple, entre ConnexionManager et Systeme clientServer)
+						for(Binding b2 : listBindings) { //liste les bindings
+							if(b.getPort2().getName().equals(b2.getPort2().getName()) && !b2.getPort1().getName().equals(name)) { //recupere le bon, evite les boucles
+								for(Attachment a : getContext().getContext().getListAttachments()) { //recupere les attachements
 									if (a.getPort().getName().equals(b2.getPort1().getName())) {
-										System.out.println("envoi role : " + a.getPort().getName() + " - "+a.getRole().getName());
-										a.getRole().receive(msg);
+										System.out.println(this.getClass().toString() + " send " + msg + " from " + p.getName() + " to "+a.getRole().getName());
+										a.getRole().receive(msg); //envoi le message au role
 
 									}
 
@@ -69,6 +71,7 @@ public abstract class Configuration implements GComposant, GConnector{
 		// parcours des attachements liés a ce port
 		for(Attachment a : listAttachments) {
 			if (a.getPort().getName().equals(name)) {
+				System.out.println(this.getClass().toString() + " send " + msg + " from " + p.getName() + " to "+a.getRole().getName());
 				a.getRole().receive(msg);
 			}
 		}
@@ -78,10 +81,11 @@ public abstract class Configuration implements GComposant, GConnector{
 		String name = r.getName();
 		// parcours des attachements liés a ce port
 		for(Attachment a : listAttachments) {
-			if (a.getRole().getName().equals(name)) {
+			if (a.getRole().getName().equals(name)) { //si attachement
 				a.getPort().receive(msg);
-				for(Binding b : listBindings) {
+				for(Binding b : listBindings) { //envoi le message a travers les bindings existants
 					if(b.getPort2().getName().equals(a.getPort().getName())) {
+						System.out.println(this.getClass().toString() + " send " + msg + " from " + r.getName() + " to "+b.getPort1().getName());
 						b.getPort1().receive(msg);
 					}
 				}
@@ -94,16 +98,18 @@ public abstract class Configuration implements GComposant, GConnector{
 		if (listBindings.size() > 0) {
 			// Parcours bindings puis attachements
 			for(Binding b : listBindings) {
-				if(b.getPort1().getName().equals(name)) {
+				if(b.getPort1().getName().equals(name)) { //si binding Composant - Config
 					recuPrec = p;
-					b.getPort2().receive(msg);
+					System.out.println(this.getClass().toString() + " send " + msg + " from " + p.getName() + " to "+b.getPort2().getName());
+					b.getPort2().receive(msg); // envoi le message au port
 				}
-				if(b.getPort2().getName().equals(name)) {
-					// evite de
+				if(b.getPort2().getName().equals(name)) { //si binding Config - Composant
+					// evite de boucler sur le precedent port
 					if(recuPrec != null)
 						if(!b.getPort1().getName().equals(recuPrec.getName())) {
 							recuPrec = p;
-							b.getPort1().receive(msg);
+							System.out.println(this.getClass().toString() + " send " + msg + " from " + p.getName() + " to "+b.getPort1().getName());
+							b.getPort1().receive(msg); //envoi le message au port
 						}
 				}
 			}
@@ -150,7 +156,6 @@ public abstract class Configuration implements GComposant, GConnector{
 	 * @see java.util.List#add(java.lang.Object)
 	 */
 	public boolean add(Binding arg0) {
-		System.out.println("============= bind " + arg0.getPort1().getName() + " - " + arg0.getPort2().getName());
 		return listBindings.add(arg0);
 	}
 
@@ -160,7 +165,6 @@ public abstract class Configuration implements GComposant, GConnector{
 	 * @see java.util.List#add(java.lang.Object)
 	 */
 	public boolean add(Attachment arg0) {
-		System.out.println("============= att " + arg0.getPort().getName() + " - " + arg0.getRole().getName());
 		return listAttachments.add(arg0);
 	}
 

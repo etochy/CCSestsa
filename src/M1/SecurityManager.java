@@ -25,18 +25,18 @@ public class SecurityManager extends Composant{
 
 	@Override
 	public void receive(String msg, Port p) {
-		System.out.println("security msg from : "+ p.getName() +" : " + msg);
+		System.out.println("==================== security msg from : "+ p.getName() +" : " + msg);
 		String res="non";
 		String delims = "[,]+";
 		String[] tokens = msg.split(delims);
-		for(String s : listOK) {
+		for(String s : listOK) { //verifie si le client a le droit de se connecter
 			if(s.equals(tokens[0])) {
 				res = "oui";
 			}
 		}
 		for(Port p2 : this.getInterS().getListPortS()) {
 			if(p2.getName().equals("pSSecuConnexion")) {
-				p2.send(msg+","+res);
+				p2.send(msg+","+res); //envoi la reponse au connexion Manager
 			}
 		}
 	}

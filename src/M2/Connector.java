@@ -4,7 +4,7 @@ public class Connector implements GConnector {
 	
 	private Configuration context;
 	private Glue glue;
-	private String description = "coucou";
+	private String description = "No description";
 	
 	public Connector(Configuration c) {
 		this.context = c;
@@ -19,7 +19,6 @@ public class Connector implements GConnector {
 	}
 	
 	public String getDescription () {
-		System.out.println(description);
 		return description;
 	}
 

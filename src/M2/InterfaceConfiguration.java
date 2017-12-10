@@ -22,14 +22,14 @@ public class InterfaceConfiguration {
 		if(type == Type.REQUIRED) {
 			System.out.println("Impossible dans ce sens");
 		}else {
-			System.out.println("send port : " + msg);
-			this.context.send(msg, name);
+			System.out.println(this.getClass().toString() + " send " + msg + " from " + name.getName());
+			this.context.send(msg, name); // si le type correspond, notifie le contexte
 		}		
 	}
 	public void receive(String msg, Port name) {
 		if(type == Type.REQUIRED) {
-			System.out.println("receive port : " + msg);
-			this.context.receive(msg, name);
+			System.out.println(this.getClass().toString() + " receive " + msg + " from " + name.getName());
+			this.context.receive(msg, name);// si le type correspond, notifie le contexte
 		}else {
 			System.out.println("Impossible dans ce sens");
 		}	

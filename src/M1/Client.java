@@ -11,7 +11,7 @@ public class Client extends Composant{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void ecrireServeur(String msg) {
+	public void ecrireServeur(String msg) { //envoi un message quelquonque
 		for(Port p : this.getInterS().getListPortS()) {
 			if(p.getName().equals("pSClient")) {
 				p.send("Client,"+msg);
@@ -19,7 +19,7 @@ public class Client extends Composant{
 		}
 	}
 	
-	public void recupererBdd() {
+	public void recupererBdd() { //envoi une demande de lecture
 		for(Port p : this.getInterS().getListPortS()) {
 			if(p.getName().equals("pSClient")) {
 				p.send("Client,lecture");
@@ -28,7 +28,7 @@ public class Client extends Composant{
 	}
 
 	public void receive(String msg, Port p) {
-		System.out.println("Client : msg from server : " + msg);
+		System.out.println("==================== Client : msg from "+ p.getName() +" : " + msg);
 	}
 
 }

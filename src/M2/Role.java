@@ -23,7 +23,6 @@ public class Role {
 	}
 	
 	public Type getType () {
-		System.out.println("Role is " + type);
 		return this.type;
 	}
 	
@@ -32,7 +31,7 @@ public class Role {
 	}
 	
 	public void receive (String message) {
-		System.out.println("receive role " +this.getName());
+		System.out.println(this.getName() + " receive " + message);
 		context.receive(message);
 	}
 }

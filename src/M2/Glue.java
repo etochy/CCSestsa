@@ -25,12 +25,13 @@ public class Glue {
 	}
 	
 	public void send (String message) {
-		for (Role r : interfaceSupplied.getRoles()) {
+		for (Role r : interfaceSupplied.getRoles()) { //recupere et nottifie les roles en sortie
 			this.context.send(message, r);
 		}
 	}
 	
-	public void receive (String message) {
+	public void receive (String message) { //envoie le message en process, ne fait rien par default
+		System.out.println(this.getClass().toString() + " receive " + message);
 		send(processMessage(message));
 	}
 	/**

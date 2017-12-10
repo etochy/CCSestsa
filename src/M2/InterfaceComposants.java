@@ -38,14 +38,14 @@ public class InterfaceComposants {
 		if(type == Type.REQUIRED) {
 			System.out.println("Impossible dans ce sens");
 		}else {
-			System.out.println("send port : " + msg);
-			this.context.send(msg, name);
+			System.out.println(this.getClass().toString() + " send " + msg + " from " + name.getName());
+			this.context.send(msg, name);// si le type correspond, notifie le contexte
 		}		
 	}
 	public void receive(String msg, Port name) {
 		if(type == Type.REQUIRED) {
-			System.out.println("receive port : " + msg);
-			this.context.receive(msg, name);
+			System.out.println(this.getClass().toString() + " receive " + msg + " from " + name.getName());
+			this.context.receive(msg, name);// si le type correspond, notifie le contexte
 		}else {
 			System.out.println("Impossible dans ce sens");
 		}	
@@ -71,11 +71,9 @@ public class InterfaceComposants {
 	 * @see java.util.List#add(java.lang.Object)
 	 */
 	public boolean addR(Port e) {
-		System.out.println("add "+e.getName());
 		return listPortR.add(e);
 	}
 	public boolean addS(Port e) {
-		System.out.println("add " + e.getName());
 		return listPortS.add(e);
 	}
 

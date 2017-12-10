@@ -24,20 +24,20 @@ public class Port {
 		if(type == Type.REQUIRED) {
 			System.out.println("Impossible dans ce sens");
 		}else {
-			System.out.println("send port : "+this.name + " : " + msg);
-			if(contextComp == null)
-				this.contextConf.send(msg, this);
+			System.out.println(this.getName() + " send " + msg);
+			if(contextComp == null) //determine si appartient a une config ou un composant
+				this.contextConf.send(msg, this);// si le type correspond, notifie le contexte
 			else
-				this.contextComp.send(msg, this);
+				this.contextComp.send(msg, this);// si le type correspond, notifie le contexte
 		}		
 	}
 	public void receive(String msg) {
 		if(type == Type.REQUIRED) {
-			System.out.println("receive port : " +this.name + " : " + msg);
-			if(contextComp == null)
-				this.contextConf.receive(msg, this);
+			System.out.println(this.getName() + " receive " + msg);
+			if(contextComp == null)//determine si appartient a une config ou un composant
+				this.contextConf.receive(msg, this);// si le type correspond, notifie le contexte
 			else
-				this.contextComp.receive(msg, this);
+				this.contextComp.receive(msg, this);// si le type correspond, notifie le contexte
 
 		}else {
 			System.out.println("Impossible dans ce sens");

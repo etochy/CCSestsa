@@ -96,7 +96,7 @@ public class SystemeC_S extends Configuration{
 		this.add(new Attachment(this, Type.SUPPLIED, pSSys, rRpc2R)); //port fourni vers role requis
 		add(rpc2);
 		
-		serveur.creerServ();
+		serveur.creerServ();// créer l'interieur du serveur une fois la premiere config fini
 	}
 	
 	public SystemeC_S(List<GComposant> listComposants, List<GConnector> listConnectors,
