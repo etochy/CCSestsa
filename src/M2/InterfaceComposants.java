@@ -71,9 +71,11 @@ public class InterfaceComposants {
 	 * @see java.util.List#add(java.lang.Object)
 	 */
 	public boolean addR(Port e) {
+		System.out.println("add "+e.getName());
 		return listPortR.add(e);
 	}
 	public boolean addS(Port e) {
+		System.out.println("add " + e.getName());
 		return listPortS.add(e);
 	}
 

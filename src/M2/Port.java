@@ -24,7 +24,7 @@ public class Port {
 		if(type == Type.REQUIRED) {
 			System.out.println("Impossible dans ce sens");
 		}else {
-			System.out.println("send port : " + msg);
+			System.out.println("send port : "+this.name + " : " + msg);
 			if(contextComp == null)
 				this.contextConf.send(msg, this);
 			else
@@ -33,7 +33,7 @@ public class Port {
 	}
 	public void receive(String msg) {
 		if(type == Type.REQUIRED) {
-			System.out.println("receive port : " + msg);
+			System.out.println("receive port : " +this.name + " : " + msg);
 			if(contextComp == null)
 				this.contextConf.receive(msg, this);
 			else

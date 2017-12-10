@@ -32,6 +32,7 @@ public class Role {
 	}
 	
 	public void receive (String message) {
+		System.out.println("receive role " +this.getName());
 		context.receive(message);
 	}
 }

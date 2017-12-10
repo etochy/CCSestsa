@@ -26,8 +26,7 @@ public class Client extends Composant{
 			}
 		}
 	}
-	
-	@Override
+
 	public void receive(String msg, Port p) {
 		System.out.println("msg from server : " + msg);
 	}

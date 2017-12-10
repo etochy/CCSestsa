@@ -16,7 +16,7 @@ import M2.Role;
 import M2.Type;
 
 public class SystemeC_S extends Configuration{
-
+	Client client;
 	public SystemeC_S() {
 		// CREATION INTERFACE SYSTEME ET PORTS
 		InterfaceConfiguration interR = new InterfaceConfiguration(this, Type.REQUIRED);
@@ -30,7 +30,7 @@ public class SystemeC_S extends Configuration{
 		interS.addS(pSSys);
 		
 		// CREATION CLIENT
-		Client client = new Client(this);
+		this.client = new Client(this);
 		
 		InterfaceComposants iRClient = new InterfaceComposants(client, Type.REQUIRED);
 		InterfaceComposants iSClient = new InterfaceComposants(client, Type.SUPPLIED);
@@ -53,16 +53,20 @@ public class SystemeC_S extends Configuration{
 		Serveur serveur = new Serveur(this);
 		InterfaceComposants iRServeur = new InterfaceComposants(serveur, Type.REQUIRED);
 		InterfaceComposants iSServeur = new InterfaceComposants(serveur, Type.SUPPLIED);
-		Port pRServeur = new Port(iRServeur, Type.REQUIRED, "iRServeur");
-		Port pSServeur = new Port(iSServeur, Type.SUPPLIED, "iSServeur");
+		
+		Port pRServeur = new Port(iRServeur, Type.REQUIRED, "pRServeur");
+		Port pSServeur = new Port(iSServeur, Type.SUPPLIED, "pSServeur");
+		
 		iRServeur.addR(pRServeur);
 		iSServeur.addS(pSServeur);
+		
 		serveur.setInterR(iRServeur);
 		serveur.setInterS(iSServeur);
+		
 		add(serveur);
 		// ATTACHMENTS AVEC SERVEUR
 		// rpc1
-		RPC rpc1 = new RPC();
+		RPC rpc1 = new RPC(this);
 		Glue gr1 = new Glue(rpc1);
 		InterfaceConnector interRrpc1 = new InterfaceConnector(Type.REQUIRED, gr1);
 		InterfaceConnector interSrpc1 = new InterfaceConnector(Type.SUPPLIED, gr1);
@@ -77,7 +81,7 @@ public class SystemeC_S extends Configuration{
 		this.add(new Attachment(this, Type.SUPPLIED, pSServeur, rRpc1R)); //port fourni vers role requis
 		add(rpc1);
 		// rpc2
-		RPC rpc2 = new RPC();
+		RPC rpc2 = new RPC(this);
 		Glue gr2 = new Glue(rpc2);
 		InterfaceConnector interRrpc2 = new InterfaceConnector(Type.REQUIRED, gr2);
 		InterfaceConnector interSrpc2 = new InterfaceConnector(Type.SUPPLIED, gr2);
@@ -90,13 +94,19 @@ public class SystemeC_S extends Configuration{
 		rpc2.setGlue(gr2);
 		this.add(new Attachment(this, Type.REQUIRED, pRServeur, rRpc2S)); //port requis vers role fourni
 		this.add(new Attachment(this, Type.SUPPLIED, pSSys, rRpc2R)); //port fourni vers role requis
-		add(rpc1);
+		add(rpc2);
+		
+		serveur.creerServ();
 	}
 	
 	public SystemeC_S(List<GComposant> listComposants, List<GConnector> listConnectors,
 			List<InterfaceConfiguration> listInterface, List<Binding> listBindings, List<Attachment> listAttachments) {
 		super(listComposants, listConnectors, listInterface, listBindings, listAttachments);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Client getClient() {
+		return client;
 	}
 
 }

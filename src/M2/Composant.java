@@ -31,16 +31,21 @@ public class Composant implements GComposant{
 	}
 	
 	public void send(String msg, Port name) {
+		System.out.println("send Composant " + name.getName() + " : "+msg);
 		this.context.send(msg, name);
 		if(listConfig.size()>0)
-			for(Configuration c : listConfig)
+			for(Configuration c : listConfig) {
 				c.send(msg, name);
+			}
 	}
 	public void receive(String msg, Port name) {
 		// Do something, utilisation du domaine metier
-		if(listConfig.size()>0)
-			for(Configuration c : listConfig)
+		System.out.println("receive " + this.toString());
+		if(listConfig.size()>0) {
+			for(Configuration c : listConfig) {
 				c.receive(msg, name);
+			}
+		}
 	}
 	
 	

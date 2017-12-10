@@ -1,15 +1,13 @@
 package M2;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Connector implements GConnector {
 	
 	private Configuration context;
 	private Glue glue;
-	private String description;
+	private String description = "coucou";
 	
-	public Connector() {
+	public Connector(Configuration c) {
+		this.context = c;
 	}
 	
 	public Connector(Glue g) {

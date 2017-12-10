@@ -3,7 +3,7 @@ package M2;
 public class Binding extends Lien{
 	
 	private Port port1; //port extern, en provenance d'un composant
-	private Port port2; //port intern
+	private Port port2; //port intern Config
 	
 	public Binding(Configuration context, Type t, Port p1, Port p2) {
 		super(context,t);
