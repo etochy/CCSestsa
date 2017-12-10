@@ -2,7 +2,6 @@ package M1;
 
 import M2.Composant;
 import M2.Configuration;
-import M2.InterfaceComposants;
 import M2.Port;
 
 public class BDD extends Composant{

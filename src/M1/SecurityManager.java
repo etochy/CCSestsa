@@ -5,7 +5,6 @@ import java.util.List;
 
 import M2.Composant;
 import M2.Configuration;
-import M2.InterfaceComposants;
 import M2.Port;
 
 public class SecurityManager extends Composant{
@@ -31,7 +30,7 @@ public class SecurityManager extends Composant{
 		String delims = "[,]+";
 		String[] tokens = msg.split(delims);
 		for(String s : listOK) {
-			if(tokens[0].equals(tokens[0])) {
+			if(s.equals(tokens[0])) {
 				res = "oui";
 			}
 		}

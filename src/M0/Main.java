@@ -2,7 +2,7 @@ package M0;
 
 import M1.SystemeC_S;
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Creation system");
